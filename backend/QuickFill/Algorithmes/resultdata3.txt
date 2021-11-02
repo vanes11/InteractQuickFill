@@ -1,0 +1,2 @@
+Temps d'execution : 1.4751911163330078
+Taille de la memoire : 58.94140625
