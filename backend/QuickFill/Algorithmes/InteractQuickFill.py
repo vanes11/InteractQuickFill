@@ -10,7 +10,7 @@ import copy
 import os
 from backend.settings import BASE_DIR
 
-#Definition des varibale global
+#Definition des varibales globales
 MesChemin = {} 
 valit = 0 
 StepResult = []

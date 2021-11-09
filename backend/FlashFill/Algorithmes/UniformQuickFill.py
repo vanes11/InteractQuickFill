@@ -1,4 +1,4 @@
-from typing import final
+#from typing import final
 from graphviz import *
 from collections import *
 from collections.abc import Iterable
@@ -1381,7 +1381,7 @@ class UniformQuickFill:
 
     def ListOfCancatenateExpression(self,dagExpression):
 
-        """ retourne une expressions concatenate du Dag """
+        """ retourne une expression concatenate du Dag """
         
         EtaTilda = copy.deepcopy(dagExpression)[1]
         W = copy.deepcopy(dagExpression)[0]
@@ -1678,6 +1678,7 @@ class UniformQuickFill:
             
 
     def GenerateStringProgram3(self,S):
+        # sans loop
         """ 
         Prend un ensemble de paires d'exemples  (entree, sortie) et retourne l'ensemble des programmes coherents avec  les exemples
         i.e  retourne l'ensemble de programmes qui permettent d'obtenir les sorties s a partir des entrees
@@ -1729,5 +1730,3 @@ class UniformQuickFill:
 
              
         return Programs
-
-

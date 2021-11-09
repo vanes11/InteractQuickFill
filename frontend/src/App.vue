@@ -4,13 +4,13 @@
       <strong><u>Contruction des blocs</u></strong> 
         <div>
               <ul>
-                  <li v-for="bloc in ListeOfBlocs" :key="bloc.message">
-                    {{ bloc.message }} <!-- Gestion du menu contextuelle dans la grille -->
+                  <li v-for="bloc in ListeOfBlocs" :key="bloc.messagetoprint">
+                    {{ bloc.messagetoprint }} <!-- Gestion du menu contextuelle dans la grille -->
                   </li>
               </ul>
             </div>
-                  <button @click="SendDataQuickFill">Envoyer</button>
-                  <button @click="BackTosheat">Retour</button>
+                  <button @click="SendDataQuickFill">Send</button>
+                  <button @click="BackTosheat">Back</button>
             <div>
         </div>
 
@@ -22,7 +22,7 @@
     <div id="spreedsheetcomponent">
 
 
-      <ejs-spreadsheet ref="spreadsheet" :created="created" :openUrl="openUrl" :saveUrl="saveUrl"  :allowHyperlink="false" :allowImage="false" :allowSorting="false" :allowFiltering="false" :contextMenuBeforeOpen="contextMenuBeforeOpen">
+      <ejs-spreadsheet ref="spreadsheet" :created="created" :openUrl="openUrl" :allowHyperlink="false" :allowImage="false" :allowSorting="false" :allowFiltering="false" :contextMenuBeforeOpen="contextMenuBeforeOpen">
       </ejs-spreadsheet>
 
     </div>
@@ -177,7 +177,7 @@
               }, /* Contient indice de la colonne de sortie */
 
               openUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/open',
-              saveUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/save',
+              //saveUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/save',
               
           
           };
@@ -833,6 +833,7 @@
 
 
                                               AddBloc.set('message',text);
+                                              AddBloc.set('messagetoprint',text + ' est un bloc');
                                               AddBloc.set('NameBloc','b'+that.listeElementToupdate[parseInt(that.idsortieselectionner.id, 10)]+'***'+text);
 
                                               AddtoContexMenu.set('text' , 'Contient le bloc ' + text);
@@ -873,6 +874,7 @@
                                              Vue.set(that.listeElementToupdate,parseInt(that.idsortieselectionner.id, 10), that.listeElementToupdate[parseInt(that.idsortieselectionner.id, 10)] + 1);
 
                                               AddBloc.set('message',text);
+                                              AddBloc.set('messagetoprint',text + ' est un bloc');
                                               AddBloc.set('NameBloc','b'+that.listeElementToupdate[parseInt(that.idsortieselectionner.id, 10)]+'***'+text);
 
                                               AddtoContexMenu.set('text' , 'Contient le bloc ' + text);
@@ -964,6 +966,7 @@
                                                 element = new Map();
 
                                                 AddBloc.set('message','Le bloc ' + text + ' est une  constante');
+                                                AddBloc.set('messagetoprint','Le bloc ' + text + ' est une  constante');
                                                 AddBloc.set('NameBloc','b'+that.listeElementToupdate[parseInt(that.idsortieselectionner.id, 10)]+'***'+text);
 
                                                   element.set('b'+that.listeElementToupdate[parseInt(that.idsortieselectionner.id, 10)]+'***'+text,"ConstStr");
@@ -995,6 +998,7 @@
                                                     element = new Map();
 
                                                     AddBloc.set('message','Le bloc ' + text + ' est une  constante');
+                                                    AddBloc.set('messagetoprint','Le bloc ' + text + ' est une  constante');
                                                     AddBloc.set('NameBloc','b'+that.listeElementToupdate[parseInt(that.idsortieselectionner.id, 10)]+'***'+text);
 
                                                       element.set('b'+that.listeElementToupdate[parseInt(that.idsortieselectionner.id, 10)]+'***'+text,"ConstStr");
@@ -1032,9 +1036,11 @@
 
                     }
                     else if(that.ListeOfIdOfCotextMenu.some(e => e === args.item.id))
-                    {
+                    { 
+
 
                           document.execCommand("copy");
+                         
 
 
 
@@ -1050,6 +1056,7 @@
                                       {
 
                                           var element = new Map();
+                                          item.messagetoprint = item.message + " => " + text;
 
                                           element.set(item.NameBloc,text);
                                           
@@ -1128,6 +1135,7 @@
                                         that.ElementToUpdate = that.ElementToUpdate +1 ;
 
                                         AddBloc.set('message',text);
+                                        AddBloc.set('messagetoprint',text + ' est un bloc');
                                         AddBloc.set('NameBloc','b'+that.ElementToUpdate+'***'+text);
                                         InfoBlocMenuDistingue.set('text' , 'Contient le bloc ' + text);
                                         InfoBlocMenuDistingue.set('idligne' , parseInt(that.idsortieselectionner.id, 10));
@@ -1204,6 +1212,7 @@
                                         var element = new Map();
 
                                         AddBloc.set('message','Le bloc ' + text + ' est une  constante');
+                                        AddBloc.set('messagetoprint','Le bloc ' + text + ' est une  constante');
                                         AddBloc.set('NameBloc','b'+that.ElementToUpdate+'***'+text);
 
                                           element.set('b'+that.ElementToUpdate+'***'+text,"ConstStr");
@@ -1247,6 +1256,8 @@
 
 
 
+
+
                             setTimeout(async () => 
                             {
 
@@ -1254,16 +1265,21 @@
 
                                   that.ListeOfBlocs.forEach(function (item) {
 
+
+
                                       
                                       if(item.message == args.item.id)
                                       {
 
+                                         
+
+                                         item.messagetoprint = item.message + " => " + text;
                                           var element = new Map();
                                           element.set(item.NameBloc,text);
                                           element.set('Entrer' , that.listeSorties[0].Entrer);
                                           element.set('Output' , that.listeSorties[0].Output);
-                                           element.set('KeyOfElement' , "v" + (parseInt(that.idColoneUtiliser.id)+1));
-                                           console.log("fffffffffffffffffffffffff : " , element);
+                                          element.set('KeyOfElement' , "v" + (parseInt(that.idColoneUtiliser.id)+1));
+                                           
                                           let obj = Array.from(element).reduce((obj, [key, value]) => (
                                                                       Object.assign(obj, { [key]: value })
                                                                     ), {});
@@ -1829,7 +1845,7 @@
 
 
 
-                                { text: 'FLashFillL(simplify))', tooltipText: 'FLashFill(simplify))',
+                                { text: 'FLashFillL (simplified)', tooltipText: 'FLashFill (simplified)',
                                 click : function() {
 
                                     indicedecolenmax = 0;
@@ -1957,7 +1973,7 @@
                                                 
 
                                                 Vue.swal.fire({
-                                                  title: '<strong><u>Statistic of FlashFill (simplify) execution</u></strong>',
+                                                  title: '<strong><u>Statistic of FlashFill (simplified) execution</u></strong>',
                                                   icon: 'info',
                                                   width: 400,
                                                   html:
