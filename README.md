@@ -14,6 +14,7 @@ Installation de pip3,python3, nodejs et npm :
 - sudo apt update
 - sudo apt install python3-pip python3
 - sudo apt install nodejs npm
+- sudo apt install graphviz
 
 - Se deplacer vers le dossier frontend et exécuter la commande : npm install
 - Se deplacer dans le dossier backend et exécuter la commande : pip3 install -r requirements.txt
@@ -25,7 +26,7 @@ Installation de pip3,python3, nodejs et npm :
 - Cliquer sur le lien de la forme : http://localhost:8080/ 
 
 
-Voir video suivante https://youtu.be/I9TW8AsSpRQ pour la démo sur l’utilisation de l’interface.
+Voir video suivante https://drive.google.com/file/d/1OjzXLlZ759mxrcPyAT3bEDVBX6wfs0wE/view pour la démo sur l’utilisation de l’interface.
 
 
 
